@@ -3,7 +3,10 @@ import { Container } from "@/components/Container";
 import { ArrowLink } from "@/components/ArrowLink";
 import { HeroOrbit } from "@/components/HeroOrbit";
 import { ArchitectureMap } from "@/components/ArchitectureMap";
+import { CapabilityVisual } from "@/components/CapabilityVisual";
 import { NewsletterForm } from "@/components/NewsletterForm";
+import { ReadinessPanel } from "@/components/ReadinessPanel";
+import { SolutionFlow } from "@/components/SolutionFlow";
 import { capabilities, insights, solutions } from "@/data/site";
 
 export default function HomePage() {
@@ -48,8 +51,10 @@ export default function HomePage() {
           </div>
           <div className="capability-list">
             {capabilities.map((capability) => (
-              <article className="capability-card" key={capability.id}>
+              <article className={`capability-card capability-card-${capability.visual}`} key={capability.id}>
                 <div className="capability-top"><span>{capability.id}</span><span>{capability.eyebrow}</span></div>
+                <CapabilityVisual type={capability.visual} />
+                <p className="capability-state"><span /> {capability.state}</p>
                 <h3>{capability.title}</h3>
                 <p>{capability.copy}</p>
                 <div className="capability-tags">{capability.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
@@ -66,7 +71,7 @@ export default function HomePage() {
           <div className="solution-grid">
             {solutions.map((solution, index) => (
               <article className={`solution-card solution-card-${index + 1}`} key={solution.title}>
-                <div className="solution-visual" aria-hidden="true"><span /><span /><span /><span /></div>
+                <SolutionFlow type={solution.visual} />
                 <p className="solution-index">0{index + 1}</p>
                 <h3>{solution.title}</h3>
                 <p>{solution.copy}</p>
@@ -100,6 +105,18 @@ export default function HomePage() {
             <div><p className="eyebrow">The ahens signal</p><h2>Get the thinking behind infrastructure that endures.</h2></div>
             <div><p>A low-frequency placeholder newsletter for operators, builders, and teams bringing AI into consequential environments.</p><NewsletterForm /></div>
           </div>
+        </Container>
+      </section>
+
+      <section className="readiness-section">
+        <Container className="readiness-layout">
+          <div className="readiness-copy">
+            <p className="eyebrow">Ready to connect</p>
+            <h2>The operating plane is calm when the work is clear.</h2>
+            <p>Use this final placeholder CTA for a design-partner motion, product demo, architecture review, or early-access workflow.</p>
+            <Link href="/contact" className="button button-primary">Start a conversation <span aria-hidden="true">↗</span></Link>
+          </div>
+          <ReadinessPanel />
         </Container>
       </section>
     </>
