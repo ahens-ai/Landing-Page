@@ -7,7 +7,7 @@ import { CapabilityVisual } from "@/components/CapabilityVisual";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import { ReadinessPanel } from "@/components/ReadinessPanel";
 import { SolutionFlow } from "@/components/SolutionFlow";
-import { capabilities, insights, solutions } from "@/data/site";
+import { capabilities, insights, site, solutions } from "@/data/site";
 
 export default function HomePage() {
   return (
@@ -103,7 +103,7 @@ export default function HomePage() {
         <Container>
           <div className="newsletter-panel">
             <div><p className="eyebrow">The ahens signal</p><h2>Get the thinking behind infrastructure that endures.</h2></div>
-            <div><p>A low-frequency placeholder newsletter for operators, builders, and teams bringing AI into consequential environments.</p><NewsletterForm /></div>
+            <div><p>A low-frequency placeholder newsletter for operators, builders, and teams bringing AI into consequential environments.</p><NewsletterForm contactEmail={site.email} /></div>
           </div>
         </Container>
       </section>

@@ -1,7 +1,9 @@
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ?? "https://ahens.ai";
+
 export const site = {
   name: "ahens.ai",
   shortName: "ahens",
-  url: "https://ahens.ai",
+  url: siteUrl,
   email: "hello@ahens.ai",
   tagline: "AI Industrial Infrastructure",
   description:

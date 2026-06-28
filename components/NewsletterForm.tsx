@@ -2,20 +2,18 @@
 
 import { FormEvent, useState } from "react";
 
-export function NewsletterForm() {
+export function NewsletterForm({ contactEmail }: { contactEmail: string }) {
   const [email, setEmail] = useState("");
   const [state, setState] = useState<"idle" | "loading" | "success" | "error">("idle");
 
-  async function onSubmit(event: FormEvent<HTMLFormElement>) {
+  function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setState("loading");
+    const subject = encodeURIComponent("ahens.ai newsletter request");
+    const body = encodeURIComponent(`Please add this email to the ahens signal list:\n\n${email}`);
+
     try {
-      const response = await fetch("/api/waitlist", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
-      if (!response.ok) throw new Error("Unable to join");
+      window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
       setState("success");
       setEmail("");
     } catch {
@@ -36,11 +34,11 @@ export function NewsletterForm() {
         disabled={state === "loading"}
       />
       <button className="button button-light" type="submit" disabled={state === "loading"}>
-        {state === "loading" ? "Joining…" : "Join the signal"} <span aria-hidden="true">↗</span>
+        {state === "loading" ? "Preparing..." : "Join the signal"} <span aria-hidden="true">↗</span>
       </button>
       <p className={`form-status ${state}`} aria-live="polite">
-        {state === "success" && "You’re on the list. This demo does not store submissions yet."}
-        {state === "error" && "Something went wrong. Please try again."}
+        {state === "success" && `Opening your email client. If nothing opens, email ${contactEmail}.`}
+        {state === "error" && `Something went wrong. Please write to ${contactEmail}.`}
       </p>
     </form>
   );

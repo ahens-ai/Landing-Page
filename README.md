@@ -10,7 +10,7 @@ The visual direction borrows only broad, non-protectable cues from the supplied 
 - Responsive home, platform, solutions, insights, company, contact, privacy, terms, and 404 pages
 - Original CSS-based visual systems and reduced-motion support
 - Editable copy and content objects in `data/site.ts`
-- Placeholder API endpoints for contact and newsletter forms
+- Static-friendly contact and newsletter forms that open prefilled email drafts
 - Metadata, sitemap, robots, keyboard skip link, focus states, and semantic layout
 
 ## Run locally
@@ -34,21 +34,34 @@ npm run build
 
 1. **Brand truth:** Update name, email, URL and claims in `data/site.ts`.
 2. **Copy:** Replace every visible use of “placeholder” with product-specific language and proof.
-3. **Contact delivery:** Wire `app/api/contact/route.ts` to Resend, HubSpot, Salesforce, a database, or another approved endpoint.
-4. **Newsletter delivery:** Wire `app/api/waitlist/route.ts` to your email provider, including rate limiting and bot protection.
+3. **Contact delivery:** GitHub Pages is static-only, so the contact form currently opens a prefilled email draft. Wire a hosted form provider or separate API if you need persistence.
+4. **Newsletter delivery:** The newsletter form also opens a prefilled email draft. Connect it to an email provider when a backend is available.
 5. **Legal copy:** Replace the placeholder `privacy` and `terms` pages with counsel-reviewed documents before launch.
 6. **Analytics:** Add your approved privacy-conscious analytics and consent workflow.
 7. **Media:** Add licensed photography, diagrams, demos, case-study visuals, and OG images.
 
-## Suggested deployment
+## GitHub Pages deployment
 
-Deploy to Vercel:
+This project is configured for a static Next.js export and GitHub Pages.
+
+1. Push the repository to GitHub on the `main` branch.
+2. In GitHub, open **Settings → Pages**.
+3. Under **Build and deployment**, set **Source** to **GitHub Actions**.
+4. Push a commit or run **Deploy to GitHub Pages** manually from the **Actions** tab.
+
+The workflow in `.github/workflows/deploy.yml` builds `out/` and deploys it to Pages. For this repository, the Pages URL will be:
+
+```text
+https://ahens-ai.github.io/Landing-Page/
+```
+
+Local static build:
 
 ```bash
 npm run build
 ```
 
-Set the production domain in `data/site.ts` before deploying so sitemap and metadata use the correct canonical base URL.
+The workflow automatically sets the correct GitHub Pages base path and site URL during deployment. For a custom domain, set `NEXT_PUBLIC_SITE_URL` and `NEXT_PUBLIC_BASE_PATH` in the workflow accordingly.
 
 ## Project structure
 
