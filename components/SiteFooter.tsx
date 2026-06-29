@@ -16,8 +16,8 @@ export function SiteFooter() {
           <div className="footer-status">
             <span />
             <div>
-              <strong>System status placeholder</strong>
-              <small>Operational posture and trust reporting can connect here later.</small>
+              <strong>Deployment-ready architecture</strong>
+              <small>Governance, observability, and trust reporting designed into the operating plane.</small>
             </div>
           </div>
         </div>
@@ -36,13 +36,13 @@ export function SiteFooter() {
         <div className="footer-signal">
           <div>
             <p className="eyebrow">The ahens signal</p>
-            <h2>Follow the architecture notes behind intelligence that operates.</h2>
+            <h2>Architecture notes for intelligence that operates.</h2>
           </div>
           <NewsletterForm contactEmail={site.email} />
         </div>
 
         <div className="footer-bottom">
-          <span>© {new Date().getFullYear()} ahens.ai. Placeholder legal entity.</span>
+          <span>© {new Date().getFullYear()} ahens.ai. All rights reserved.</span>
           <div>
             <a href={`mailto:${site.email}`}>{site.email}</a>
             {site.social.map((item) => (
