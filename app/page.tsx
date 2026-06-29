@@ -22,7 +22,7 @@ export default function HomePage() {
               <Link href="/contact" className="button button-primary">Build with ahens <span aria-hidden="true">↗</span></Link>
               <Link href="/platform" className="button button-ghost">Explore the platform <span aria-hidden="true">↓</span></Link>
             </div>
-            <p className="hero-note">Placeholder positioning and capabilities. Replace with the exact product narrative when available.</p>
+            <p className="hero-note">System posture: secure workflows, visible controls, and operational handoff in one plane.</p>
           </div>
           <HeroOrbit />
         </Container>

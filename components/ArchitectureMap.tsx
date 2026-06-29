@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { PointerEvent as ReactPointerEvent, useMemo, useState } from "react";
 import { pillars } from "@/data/site";
 
 export function ArchitectureMap() {
@@ -9,6 +9,12 @@ export function ArchitectureMap() {
     () => pillars.find((pillar) => pillar.index === activeIndex) ?? pillars[0],
     [activeIndex],
   );
+
+  function handlePointerEnter(event: ReactPointerEvent<HTMLButtonElement>, index: string) {
+    if (event.pointerType === "mouse") {
+      setActiveIndex(index);
+    }
+  }
 
   return (
     <section className="architecture-section" aria-labelledby="architecture-title">
@@ -54,7 +60,7 @@ export function ArchitectureMap() {
                 aria-controls="architecture-panel"
                 onClick={() => setActiveIndex(pillar.index)}
                 onFocus={() => setActiveIndex(pillar.index)}
-                onPointerEnter={() => setActiveIndex(pillar.index)}
+                onPointerEnter={(event) => handlePointerEnter(event, pillar.index)}
               >
                 <span className="architecture-number">{pillar.index}</span>
                 <span className="architecture-label">{pillar.label}</span>

@@ -27,6 +27,8 @@ export function NewsletterForm({ contactEmail }: { contactEmail: string }) {
       <input
         id="newsletter-email"
         type="email"
+        inputMode="email"
+        autoComplete="email"
         value={email}
         onChange={(event) => setEmail(event.target.value)}
         placeholder="Work email"
