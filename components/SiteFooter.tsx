@@ -1,41 +1,54 @@
 import Link from "next/link";
-import { Container } from "./Container";
+import { footerGroups, site } from "@/data/site";
 import { BrandMark } from "./BrandMark";
-import { site } from "@/data/site";
+import { Container } from "./Container";
+import { NewsletterForm } from "./NewsletterForm";
 
 export function SiteFooter() {
   return (
     <footer className="site-footer">
       <Container>
-        <div className="footer-top">
+        <div className="footer-command">
           <div>
             <BrandMark />
-            <p className="footer-tagline">AI industrial infrastructure for systems that have to work in the real world.</p>
+            <p>AI industrial infrastructure for systems that need secure, governable intelligence in operation.</p>
           </div>
-          <div className="footer-links-grid">
+          <div className="footer-status">
+            <span />
             <div>
-              <p>Explore</p>
-              <Link href="/platform">Platform</Link>
-              <Link href="/solutions">Solutions</Link>
-              <Link href="/insights">Insights</Link>
-            </div>
-            <div>
-              <p>Company</p>
-              <Link href="/company">About</Link>
-              <Link href="/contact">Contact</Link>
-              <a href="https://www.linkedin.com/company/ahens-ai/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
-            </div>
-            <div>
-              <p>Legal</p>
-              <Link href="/privacy">Privacy</Link>
-              <Link href="/terms">Terms</Link>
-              <a href={`mailto:${site.email}`}>{site.email}</a>
+              <strong>System status placeholder</strong>
+              <small>Operational posture and trust reporting can connect here later.</small>
             </div>
           </div>
         </div>
+
+        <div className="footer-grid">
+          {footerGroups.map((group) => (
+            <div className="footer-column" key={group.title}>
+              <p>{group.title}</p>
+              {group.links.map((link) => (
+                <Link href={link.href} key={`${group.title}-${link.href}`}>{link.label}</Link>
+              ))}
+            </div>
+          ))}
+        </div>
+
+        <div className="footer-signal">
+          <div>
+            <p className="eyebrow">The ahens signal</p>
+            <h2>Follow the architecture notes behind intelligence that operates.</h2>
+          </div>
+          <NewsletterForm contactEmail={site.email} />
+        </div>
+
         <div className="footer-bottom">
-          <span>© {new Date().getFullYear()} ahens.ai. All rights reserved.</span>
-          <span>Built for clarity, not noise.</span>
+          <span>© {new Date().getFullYear()} ahens.ai. Placeholder legal entity.</span>
+          <div>
+            <a href={`mailto:${site.email}`}>{site.email}</a>
+            {site.social.map((item) => (
+              <a href={item.href} target="_blank" rel="noreferrer" key={item.href}>{item.label}</a>
+            ))}
+          </div>
         </div>
       </Container>
     </footer>
